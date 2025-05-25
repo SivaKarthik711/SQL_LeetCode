@@ -4,7 +4,7 @@ SELECT
     ROUND(
         COALESCE(
             SUM(CASE WHEN Confirmations.action = 'confirmed' THEN 1 ELSE 0 END) * 1.0 /
-            NULLIF(COUNT(Confirmations.action), 0), 
+            NULLIF(COUNT(Confirmations.user_id), 0), 
             0
         ),
         2
