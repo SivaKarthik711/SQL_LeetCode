@@ -1,10 +1,10 @@
 # Write your MySQL query statement below
 SELECT
-    Signups.user_id,
+        Signups.user_id,
     ROUND(
         COALESCE(
             SUM(CASE WHEN Confirmations.action = 'confirmed' THEN 1 ELSE 0 END) * 1.0 /
-            NULLIF(COUNT(Confirmations.action), 0), 
+            NULLIF(COUNT(Signups.user_id), 0), 
             0
         ),
         2
