@@ -6,5 +6,5 @@ FROM
 GROUP BY
     class
 HAVING
-    COUNT(student) > 5
+    COUNT(student) >= 5
 ;
