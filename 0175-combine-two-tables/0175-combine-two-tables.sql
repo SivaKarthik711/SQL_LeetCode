@@ -6,7 +6,7 @@ SELECT
     Address.state
 FROM
     Person
-LEFT JOIN
+LEFT JOIN  
     Address
 ON
-    Person.personId =Address.personId
+    Person.personId = Address.personId
