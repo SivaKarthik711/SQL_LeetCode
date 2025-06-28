@@ -24,11 +24,20 @@ all_points AS (
     UNION ALL
     SELECT * FROM guest_points
 )
-SELECT 
-    t.team_id,
-    t.team_name,
-    COALESCE(SUM(p.points), 0) AS num_points
-FROM Teams t
-LEFT JOIN all_points p ON t.team_id = p.team_id
-GROUP BY t.team_id, t.team_name
-ORDER BY num_points DESC, t.team_id ;
+
+SELECT
+    Teams.team_id,
+    Teams.team_name,
+    COALESCE(SUM(all_points.points),0) AS num_points
+FROM
+    Teams
+LEFT JOIN
+    all_points
+ON
+    Teams.team_id = all_points.team_id
+GROUP BY
+    Teams.team_id
+ORDER BY
+    num_points DESC,
+    Teams.team_id
+    
