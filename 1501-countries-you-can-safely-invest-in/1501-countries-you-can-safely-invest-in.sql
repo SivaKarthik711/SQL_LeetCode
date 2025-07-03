@@ -1,14 +1,17 @@
 SELECT
- co.name AS country
+    Country.name as country
 FROM
- person p
- JOIN
-     country co
-     ON SUBSTRING(phone_number,1,3) = country_code
- JOIN
-     calls c
-     ON p.id IN (c.caller_id, c.callee_id)
+    Person
+JOIN
+    Country
+ON
+    SUBSTRING_INDEX(Person.phone_number,'-',1) = Country.country_code
+JOIN
+    Calls
+ON
+    Person.id IN (Calls.caller_id,Calls.callee_id)
 GROUP BY
- co.name
+    Country.name
 HAVING
- AVG(duration) > (SELECT AVG(duration) FROM calls)
+    AVG(duration) > (SELECT AVG(duration) FROM Calls)
+ 
